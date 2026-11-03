@@ -7,7 +7,13 @@ RUN apt-get update && apt-get install -y \
     nano \
     wget \
     kmod \
+    git \
     mergerfs \
+    python-is-python3 \
+    unzip \
+    ccache \
+    snapd \
+    python3 \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
@@ -39,6 +45,8 @@ fi
 EOF
 
 RUN chown twrp-builder:twrp-builder /home/twrp-builder/.bashrc
+
+RUN git clone https://github.com/ghostrider-reborn/scripts.git && cd scripts && chmod +x ubuntu-setup.sh && sudo ./ubuntu-setup.sh && cd .. &&rm -rf scripts
 
 WORKDIR /twrp
 
