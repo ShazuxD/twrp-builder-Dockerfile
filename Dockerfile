@@ -37,9 +37,13 @@ COPY merge-storage.sh /usr/local/bin/merge-storage
 
 COPY swap.sh /usr/local/bin/setup-swap
 
+COPY twrp-build.sh /usr/bin/twrp-build
+
 RUN chmod +x /usr/local/bin/merge-storage
 
 RUN chmod +x /usr/local/bin/setup-swap
+
+RUN chmod +x /usr/bin/twrp-build
 
 RUN cat <<'EOF' >> /home/twrp-builder/.bashrc
 
