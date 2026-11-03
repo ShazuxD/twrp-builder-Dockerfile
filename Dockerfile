@@ -29,7 +29,11 @@ RUN echo 'export PS1="\[\033[1;32m\]@twrp-builder\[\033[0m\] ➜ \[\033[1;34m\]\
 
 COPY merge-storage.sh /usr/local/bin/merge-storage
 
+COPY swap.sh /usr/local/bin/setup-swap
+
 RUN chmod +x /usr/local/bin/merge-storage
+
+RUN chmod +x /usr/local/bin/setup-swap
 
 RUN cat <<'EOF' >> /home/twrp-builder/.bashrc
 
