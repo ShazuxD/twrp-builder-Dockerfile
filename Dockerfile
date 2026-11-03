@@ -25,6 +25,21 @@ COPY merge-storage.sh /usr/local/bin/merge-storage
 
 RUN chmod +x /usr/local/bin/merge-storage
 
+RUN cat <<'EOF' >> /home/twrp-builder/.bashrc
+
+# Auto-mount merged storage
+if [ -t 0 ] && ! mountpoint -q /twrp; then
+    sudo /usr/local/bin/merge-storage
+fi
+
+# Enter project directory
+if [ -d /twrp/Codespace-TWRP-Builder ]; then
+    cd /twrp/Codespace-TWRP-Builder
+fi
+EOF
+
+RUN chown twrp-builder:twrp-builder /home/twrp-builder/.bashrc
+
 WORKDIR /twrp
 
 USER twrp-builder
