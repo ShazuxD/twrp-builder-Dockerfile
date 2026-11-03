@@ -11,6 +11,10 @@ RUN apt-get update && apt-get install -y \
     mergerfs \
     python-is-python3 \
     unzip \
+    tar \
+    pigz \
+    rclone \
+    aria2 \
     ccache \
     snapd \
     python3 \
@@ -26,6 +30,8 @@ RUN useradd -m -s /bin/bash twrp-builder \
 RUN echo 'export PS1="\[\033[1;32m\]@twrp-builder\[\033[0m\] ➜ \[\033[1;34m\]\w\[\033[0m\] \$ "' \
     >> /home/twrp-builder/.bashrc \
     && chown twrp-builder:twrp-builder /home/twrp-builder/.bashrc
+
+RUN git config --global user.name "ShazuxD" &&git config --global user.email "shazuxd7@gmail.com" &&git config --global core.editor nano
 
 COPY merge-storage.sh /usr/local/bin/merge-storage
 
