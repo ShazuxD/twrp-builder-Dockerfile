@@ -226,12 +226,27 @@ EOF
     export ALLOW_MISSING_DEPENDENCIES=true
     lunch "${MAKEFILE_NAME}-eng" || return 1
 
+  if [[ "${UPLOAD_CCACHE}" == "y" ]]; then
+
     if [[ "${BUILD_TYPE}" == "clean" ]]; then
         make clean || return 1
     fi
 
+    export CCACHE_DIR=/tmp/ccache
+    export CCACHE_EXEC=$(which ccache)
+    export USE_CCACHE=1
+    ccache -M 12G
+    ccache -o compression=true
+    ccache -z
     make "${BUILD_TARGET}image" -j"$(nproc --all)" || return 1
     tg "Build Completed!"
+  else
+    if [[ "${BUILD_TYPE}" == "clean" ]]; then
+        make clean || return 1
+    fi
+    make "${BUILD_TARGET}image" -j"$(nproc --all)" || return 1
+    tg "Build Completed!"
+  fi
 }
 
 up_recovery() {
