@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     git \
     mergerfs \
     python-is-python3 \
+    pip \
+    curl \
     unzip \
     tar \
     pigz \
@@ -35,13 +37,9 @@ RUN git config --global user.name "ShazuxD" &&git config --global user.email "sh
 
 COPY merge-storage.sh /usr/local/bin/merge-storage
 
-COPY swap.sh /usr/local/bin/setup-swap
-
 COPY twrp-build.sh /usr/bin/twrp-build
 
 RUN chmod +x /usr/local/bin/merge-storage
-
-RUN chmod +x /usr/local/bin/setup-swap
 
 RUN chmod +x /usr/bin/twrp-build
 
