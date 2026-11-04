@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     kmod \
     git \
     mergerfs \
+    rsync \
     python-is-python3 \
     pip \
     curl \

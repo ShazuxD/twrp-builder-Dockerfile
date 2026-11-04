@@ -185,6 +185,19 @@ setup_swap() {
     echo "Swap enabled: ${label} at ${swapfile}"
 }
 
+dl_ccache() {
+
+if [[ -n "${CCACHE_URL}" ]]; then
+ cd /tmp
+ tg "Downloading Ccache!"
+ time aria2c "${CCACHE_URL}" -x16 -s50
+ time tar xf ccache.tar.gz
+ rm -rf ccache.tar.gz
+ cd /twrp
+fi
+
+}
+
 repo_sync() {
     tg "$(cat <<EOF
 REPO SYNC STARTED!
@@ -283,6 +296,10 @@ EOF
 cd /twrp || die "cannot cd to /twrp"
 
 run_step "Swap setup" setup_swap
+
+if [[ -n ${CCACHE_URL} ]]; then
+    run_step "Downloading Ccache" dl_ccache
+fi
 
 if [[ -n ${MANIFEST_URL} && -n ${MANIFEST_BRANCH} ]]; then
     run_step "Repo sync" repo_sync

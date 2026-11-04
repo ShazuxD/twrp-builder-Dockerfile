@@ -83,6 +83,7 @@ BUILD_TARGET="boot"        # use "boot" for bootimage / boot.img
 SWAP_SIZE=16               # 16, 16G or 8192M. Bare numbers mean GB
 SWAP_FILE="/tmp/swapfile"  # always kept inside /tmp
 UPLOAD_CCACHE=y            # use ccache for the build, then upload it afterwards
+CCACHE_URL=                # ccache url, uses aria2
 TG_CHAT_ID=""              # Telegram notifications
 TG_TOKEN=""
 ```
@@ -126,6 +127,7 @@ Typing just `clean` also works, for old habits.
 | `SWAP_SIZE` | No | Skipped if unset. Eg: 16G |
 | `SWAP_FILE` | No | Defaults to `/tmp/swapfile`. Anything outside `/tmp` gets moved into `/tmp` |
 | `UPLOAD_CCACHE` | No | Set to `y` to build with ccache |
+| `CCACHE_URL` | No | Add ccache url to download ccache, set `UPLOAD_CCACHE` to `y`|
 | `TG_CHAT_ID`, `TG_TOKEN` | No | Telegram notifications |
 
 ## Good to know
